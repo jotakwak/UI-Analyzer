@@ -1,0 +1,58 @@
+html{
+    min-height:100%;/* make sure it is at least as tall as the viewport */
+    position:relative;
+}
+
+body{
+    height:100%; /* force the BODY element to match the height of the HTML element */
+}
+
+#app{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    overflow:hidden;
+}
+
+#testingPage {
+  width:      100%;
+  height:     100%; 
+  position:relative;
+  float:left;
+}
+
+#testOverlay {
+  width:      100%;
+  height: 5000px;
+  top:        0; 
+  left:       0; 
+  background-image: url(https://katcompass.files.wordpress.com/2010/12/paparazzi-to-tiger-woods-you-did-this-you-re-ours-2.jpg);
+  opacity: 0.5;
+  position:   absolute; 
+}
+
+#testLayer {
+  position: absolute;
+}
+
+/*#distanceReference{
+  z-index: -30;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  background-color: white;
+}*/
+
+#origin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  height: 5px;
+  width: 5px;
+  margin: 0;
+  padding: 0;
+  background-color: red;
+}

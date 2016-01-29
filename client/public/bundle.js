@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "3a38a52e7fa2d3dc075b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4f462bedddc3ebff6978"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27559,16 +27559,16 @@
 
 	var _DashboardPage2 = _interopRequireDefault(_DashboardPage);
 
+	var _TestingPage = __webpack_require__(256);
+
+	var _TestingPage2 = _interopRequireDefault(_TestingPage);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
 	  displayName: 'App',
 	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement(_DashboardPage2.default, null)
-	    );
+	    return _react2.default.createElement(_TestingPage2.default, null);
 	  }
 	});
 
@@ -28252,6 +28252,90 @@
 /***/ function(module, exports) {
 
 	"use strict";
+
+/***/ },
+/* 256 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(77);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	  displayName: 'TestingPage.react',
+
+	  // getInitialState() {
+	  //   return {
+	  //     mouseX: 0,
+	  //     mouseY: 0
+	  //   };
+	  // },
+
+	  componentDidMount: function componentDidMount() {
+
+	    Element.prototype.remove = function () {
+	      this.parentElement.removeChild(this);
+	    };
+
+	    NodeList.prototype.remove = HTMLCollection.prototype.remove = function () {
+	      for (var i = this.length - 1; i >= 0; i--) {
+	        if (this[i] && this[i].parentElement) {
+	          this[i].parentElement.removeChild(this[i]);
+	        }
+	      }
+	    };
+	    var activateMouseShutter = function activateMouseShutter() {
+	      document.getElementById('testLayer').style.zIndex = '-20';
+	      setTimeout(function () {
+	        document.getElementById('testLayer').style.zIndex = '20';
+	      }, 50);
+	    };
+
+	    console.log('component did mount');
+	    setInterval(activateMouseShutter, 600);
+	  },
+	  trackMouse: function trackMouse(event) {
+	    var x = event.pageX;
+	    var y = event.pageY;
+	    console.log('mousecoordinate', x, y);
+	  },
+
+	  // handleClick(event) {
+	  //   var x = event.pageX;
+	  //   var y = event.pageY;
+	  //   console.log('mousecoordinate', x, y);
+	  //   document.getElementById('testOverlay').parentElement.removeChild(this);
+	  //   }, 1);
+	  // },
+
+	  captureOnLoad: function captureOnLoad() {
+	    console.log('capturing the screen');
+	    var documentHeight = document.getElementById('testLayer').scrollHeight;
+	    documentHeight = documentHeight.toString() + 'px';
+	    console.log('originContainer height :', documentHeight);
+	    document.getElementById('testOverlay').style.height = documentHeight;
+	  },
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { id: 'testingPage' },
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement('iframe', { id: 'testLayer', width: '100%', height: '5000px', frameBorder: '0', src: 'http://www.hackreactor.com', onLoad: this.captureOnLoad }),
+	        _react2.default.createElement('div', { id: 'testOverlay', onMouseOver: this.trackMouse })
+	      )
+	    );
+	  }
+	});
 
 /***/ }
 /******/ ]);
